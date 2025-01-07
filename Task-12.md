@@ -57,7 +57,7 @@
 - Find all students who belong to the `CSE` department and are enrolled in more than 2 courses.
 
 ```js
- Ans :-  db.students.find({
+   db.students.find({
   $and: [
     { "department": "Computer Science" },
     { "coursesEnrolled": { $exists: true, $not: { $size: 2 } } } 
@@ -69,7 +69,7 @@
 - Add a new field `activeStatus` and set it to `true` for all students.
 
 ```js
-Ans :- db.students.updateMany(
+ db.students.updateMany(
     {}, {$set: {activestatus: true}}
 );
 ```
@@ -88,7 +88,7 @@ db.students.updateMany(
 - Add a field `graduationYear` with a default value for all students.
 
 ```js
-Ans :- db.students.updateMany(
+ db.students.updateMany(
   {}, {$set: {graduationyear: 2025}}
 );
 ```
@@ -97,7 +97,7 @@ Ans :- db.students.updateMany(
 - Add the course "CS303" to `Mahir`’s `coursesEnrolled` list.
 
 ```js
-Ans :- db.students.updateOne(
+ db.students.updateOne(
   {"name": "Mahir"},
   {$push: {"coursesEnrolled": "CS303"}}
 );
@@ -107,7 +107,7 @@ Ans :- db.students.updateOne(
 - Remove the course `CS101` from `Jenil`’s list.
 
 ```js
-Ans :- db.students.updateOne(
+ db.students.updateOne(
   {"name": "Jenil"},
   {$pull: {"coursesEnrolled": "CS101"}}
 );
@@ -117,7 +117,7 @@ Ans :- db.students.updateOne(
 - Delete the student record with roll number `CS1004`.
 
 ```js
-Ans :- db.students.deleteOne(
+ db.students.deleteOne(
   {"rollNumber": 104}
 );
 ```
@@ -126,7 +126,7 @@ Ans :- db.students.deleteOne(
 - Use `$all` operator to find students who are enrolled in both courses.
 
 ```js
-Ans :- db.students.find(
+ db.students.find(
   {enrolledCourses: { $all: ["CS101","EE101"]}}
 );
 ```
@@ -135,7 +135,7 @@ Ans :- db.students.find(
 - Use regular expressions to search for students whose names begin with the letter "A".
 
 ```js
-Ans :- db.students.find({
+ db.students.find({
   name: { $regex: "^A", $options: "i" }
 });
 ```
@@ -144,7 +144,7 @@ Ans :- db.students.find({
 - Query students who have an entry in the `coursesEnrolled` array.
 
 ```js
-Ans :- db.students.find(
+ db.students.find(
   { "enrolledCourses": {$exists: true, $ne: []}}
 );
 ```
@@ -153,7 +153,7 @@ Ans :- db.students.find(
 - Add a new field `grades` to the `students` collection and store an array of grades for each course.
 
 ```js
-Ans :- db.students.updateOne(
+ db.students.updateOne(
   {name: "Jenil"},
   {$set: {grades: ["A","B","A+","B+"]}}
 );
@@ -164,7 +164,7 @@ Do the Same for the different Students.
 - Find students enrolled in `CS101` and have the grade `A`.
 
 ```js
-Ans :- db.students.find({
+ db.students.find({
   $and: [
     { enrolledCourses: "CS101" }, 
     { grades: "A" }             
@@ -176,7 +176,7 @@ Ans :- db.students.find({
 - Query students who have enrolled in exactly two courses.
 
 ```js
-Ans :- db.students.find({
+ db.students.find({
   enrolledCourses: { $size: 2 }
 });
 ```
@@ -185,7 +185,7 @@ Ans :- db.students.find({
 - Use text indexing to search for the course `Digital Electronics` in the `courses` collection.
 
 ```js
-Ans :- Step-1)  db.courses.createIndex(
+ Step-1)  db.courses.createIndex(
                  {courseName: "text"}
                 );
             
@@ -198,7 +198,7 @@ Ans :- Step-1)  db.courses.createIndex(
 - Create a compound index on the fields `department` and `year` for better querying performance.
 
 ```js
-Ans :- Step-1)   db.students.createIndex(
+ Step-1)   db.students.createIndex(
                  {department: 1, year: 1}
                 );
 
@@ -215,14 +215,14 @@ Ans :- Step-1)   db.students.createIndex(
 - Sort the students in ascending order of their roll number.
 
 ```js
-Ans :- db.students.find().sort({rollNumber: 1});
+ db.students.find().sort({rollNumber: 1});
 ```
 
 #### **Task 32: Create a unique index on the roll number**  
 - Create a unique index to ensure that the roll numbers in the `students` collection are unique.
 
 ```js
-Ans :- 
+ 
 ```
 
 #### **Task 33: Update the course name in the `courses` collection**  
