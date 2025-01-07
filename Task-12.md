@@ -175,17 +175,55 @@ Ans :- db.students.find({
 #### **Task 28: Use `$size` operator to query students with exactly 2 courses enrolled**  
 - Query students who have enrolled in exactly two courses.
 
+```js
+Ans :- db.students.find({
+  enrolledCourses: { $size: 2 }
+});
+```
+
 #### **Task 29: Perform a text search for a course title**  
 - Use text indexing to search for the course `Digital Electronics` in the `courses` collection.
+
+```js
+Ans :- Step-1)  db.courses.createIndex(
+                 {courseName: "text"}
+                );
+            
+       Step-2)   db.courses.find(
+        {$text: {$search: "Algorithm"}}
+       );
+```
 
 #### **Task 30: Create a compound index on department and year**  
 - Create a compound index on the fields `department` and `year` for better querying performance.
 
+```js
+Ans :- Step-1)   db.students.createIndex(
+                 {department: 1, year: 1}
+                );
+
+      Step-2) Example Queries
+                 db.student.find(
+                  {department: "Computer Science", year: 2}
+                 );
+      
+      We can conform the index was created or not Using :-
+              db.students.getIndexes();
+```
+
 #### **Task 31: Use `$sort` to order students by their roll number**  
 - Sort the students in ascending order of their roll number.
 
+```js
+Ans :- db.students.find().sort({rollNumber: 1});
+```
+
 #### **Task 32: Create a unique index on the roll number**  
 - Create a unique index to ensure that the roll numbers in the `students` collection are unique.
+
+```js
+Ans :- 
+```
 
 #### **Task 33: Update the course name in the `courses` collection**  
 - Update the name of the course `CS101` to `Intro to Programming`.
