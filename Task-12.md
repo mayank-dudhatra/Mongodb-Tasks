@@ -56,7 +56,7 @@
 #### **Task 16: Use the `$and` operator for filtering students**  
 - Find all students who belong to the `CSE` department and are enrolled in more than 2 courses.
 
-```
+```js
  Ans :-  db.students.find({
   $and: [
     { "department": "Computer Science" },
@@ -68,7 +68,7 @@
 #### **Task 17: Add a new field to all documents in the `students` collection**  
 - Add a new field `activeStatus` and set it to `true` for all students.
 
-```
+```js
 Ans :- db.students.updateMany(
     {}, {$set: {activestatus: true}}
 );
@@ -78,7 +78,7 @@ Ans :- db.students.updateMany(
 #### **Task 18: Use `$rename` to rename a field**  
 - Rename the `coursesEnrolled` field in the `students` collection to `enrolledCourses`.
 
-```
+```js
 db.students.updateMany(
   {}, {$rename: {"coursesEnrolled": "enrolledCourses"}}
 );
@@ -87,7 +87,7 @@ db.students.updateMany(
 #### **Task 19: Set default values for new fields in all student documents**  
 - Add a field `graduationYear` with a default value for all students.
 
-```
+```js
 Ans :- db.students.updateMany(
   {}, {$set: {graduationyear: 2025}}
 );
@@ -96,7 +96,7 @@ Ans :- db.students.updateMany(
 #### **Task 20: Use the `$push` operator to add a new course to a student’s course list**  
 - Add the course "CS303" to `Mahir`’s `coursesEnrolled` list.
 
-```
+```js
 Ans :- db.students.updateOne(
   {"name": "Mahir"},
   {$push: {"coursesEnrolled": "CS303"}}
@@ -106,7 +106,7 @@ Ans :- db.students.updateOne(
 #### **Task 21: Use `$pull` to remove a course from a student's courses list**  
 - Remove the course `CS101` from `Jenil`’s list.
 
-```
+```js
 Ans :- db.students.updateOne(
   {"name": "Jenil"},
   {$pull: {"coursesEnrolled": "CS101"}}
@@ -116,7 +116,7 @@ Ans :- db.students.updateOne(
 #### **Task 22: Remove a student from the `students` collection**  
 - Delete the student record with roll number `CS1004`.
 
-```
+```js
 Ans :- db.students.deleteOne(
   {"rollNumber": 104}
 );
@@ -125,7 +125,7 @@ Ans :- db.students.deleteOne(
 #### **Task 23: Find students who are enrolled in both `CS101` and `MATH202`**  
 - Use `$all` operator to find students who are enrolled in both courses.
 
-```
+```js
 Ans :- db.students.find(
   {enrolledCourses: { $all: ["CS101","EE101"]}}
 );
@@ -134,7 +134,7 @@ Ans :- db.students.find(
 #### **Task 24: Use `$regex` to search for students whose name starts with "A"**  
 - Use regular expressions to search for students whose names begin with the letter "A".
 
-```
+```js
 Ans :- db.students.find({
   name: { $regex: "^A", $options: "i" }
 });
@@ -143,7 +143,7 @@ Ans :- db.students.find({
 #### **Task 25: Use `$exists` to find students with enrolled courses**  
 - Query students who have an entry in the `coursesEnrolled` array.
 
-```
+```js
 Ans :- db.students.find(
   { "enrolledCourses": {$exists: true, $ne: []}}
 );
@@ -152,7 +152,7 @@ Ans :- db.students.find(
 #### **Task 26: Add a field to store students' grades for each course**  
 - Add a new field `grades` to the `students` collection and store an array of grades for each course.
 
-```
+```js
 Ans :- db.students.updateOne(
   {name: "Jenil"},
   {$set: {grades: ["A","B","A+","B+"]}}
@@ -163,7 +163,7 @@ Do the Same for the different Students.
 #### **Task 27: Use `$elemMatch` to query students enrolled in specific courses**  
 - Find students enrolled in `CS101` and have the grade `A`.
 
-```
+```js
 Ans :- db.students.find({
   $and: [
     { enrolledCourses: "CS101" }, 
